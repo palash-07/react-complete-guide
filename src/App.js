@@ -3,21 +3,6 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import Person from './Person/Person';
 
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: black;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
-
 class App extends Component {
   state = {
     persons: [
@@ -107,9 +92,10 @@ class App extends Component {
       <p className={classes.join(' ')}>This is really working</p>
       <button onClick={this.switchNameHandler.bind(this,'Maximilian')}>Switch Name</button> {/*M3 : L22*/}
       <br></br>
-      <StyledButton
+      <button
+        className="button"
         alt={this.state.showPersons}
-        onClick={this.togglePersonHandler}>Show/Hide Persons</StyledButton> {/*M4 : L2*/} 
+        onClick={this.togglePersonHandler}>Show/Hide Persons</button> {/*M4 : L2*/} 
       
       {persons} 
       {/* The above persons is getting rendered when render function is called. it is either null or content*/}
