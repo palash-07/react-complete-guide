@@ -14,7 +14,9 @@ class App extends Component {
         {id: 'xyz' ,name: 'Stephanie', age: 26}
       ],
       otherState: 'some other value',
-      showPersons: false
+      showPersons: false,
+      changeCounter: 0,
+      authenticated: false
     }
   }
 
@@ -58,14 +60,23 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({
-      persons: persons
+
+    this.setState((prevState,props) => {
+      console.log(prevState.changeCounter);
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter+1
+      };
     });
   }
 
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow});
+  }
+
+  loginHandler = () => {
+      this.setState({authenticated:true});
   }
 
   render() {
@@ -77,7 +88,8 @@ class App extends Component {
           <Persons 
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            changed={this.nameChangeHandler}/>
+            changed={this.nameChangeHandler}
+            isAuthenticated={this.state.authenticated}/>
       );  
     }
 
@@ -88,6 +100,7 @@ class App extends Component {
         showPersons={this.state.showPersons}
         personsLength={this.state.persons.length}
         clicked={this.togglePersonHandler}
+        login={this.loginHandler}
         />
       {persons} 
       {/* The above persons is getting rendered when render function is called. it is either null or content*/}

@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 const Cockpit = (props) => {
-    useEffect(() => {
-      console.log('[Cockpit.js] useEffect');
-      // Http request ....
-      setTimeout(()=>{
-          alert('Saved data to cloud!');
-      },1000);
-    },[]);
+    // useEffect(() => {
+    //   console.log('[Cockpit.js] useEffect');
+    //   // Http request ....
+    //   setTimeout(()=>{
+    //       alert('Saved data to cloud!');
+    //   },1000);
+    // },[]);
 
     const assignedClasses = []; // converting to a string 'red bold'
     let buttonClass = '';
@@ -30,6 +30,7 @@ const Cockpit = (props) => {
         <button
             className={buttonClass}
             onClick={props.clicked}>Show/Hide Persons</button>
+        <button onClick={props.login}>Log In</button>
       </div>
     );
 };
